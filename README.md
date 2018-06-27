@@ -41,6 +41,8 @@ Identify and prioritize essential user stories (limit this to 3 or fewer)?
 
 3- As a Metro area resident, I want to know how to get there using metro.
 
+(Broad user story for entire app- "As a busy young professional in the DC area, I have trouble keeping track of everything happening and usually end up stuck when making plans with friends because none of us knows what we want to do. I need something that finds out what's happening near us without cluttering the results with events we wouldn't want to attend and that makes it easy to make a decision, especially last-minute. I also want to have all the information in one place to attend the event, including the nearest Metro station.")
+
 
 Starter Task List:
 
