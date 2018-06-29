@@ -1,0 +1,84 @@
+#reset {
+    display: none;
+  }
+  
+  #bigbox { width: 50%;
+      margin-left: 25%;
+  
+      background-color: rgb(205, 156, 50);
+      text-align: center;
+  }
+  
+  
+  #box {
+  
+      background-color: rgb(205, 156, 50);
+      text-align: center;
+  }
+  
+  #bap{
+      /* min-height: 100% !important; */
+     /* background-color: deepskyblue; */
+     /* padding: 300px; */
+     margin: 0 auto !important;
+  
+  }
+  #test{ height: 400px;
+  
+  }
+  #dest{
+      font-size: 50px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: black;
+  }
+  #get{
+      font-style: italic;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+  }
+  
+  #bar{
+      background-color:rgb(205, 156, 50);
+  }
+  #rad{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      text-align: left;
+      font-style: italic;
+  }
+  #lab{
+      color: black;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-style: italic;
+  
+  }
+  /* #input-field, .col, .s12{
+      color: black;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-style: italic;
+      width: 30px;
+  } */
+  #hike{
+      color: black;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+      font-style: italic;
+  
+  }
+  /* option{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  } */
+  #mapid {
+      height: 340px;
+      /* width: 40%; */
+      margin-left: 80px;
+      margin-top: 50px;
+      /* float: right; */
+      /* right: 100px; */
+  }
+  
+ 
+  
+  
