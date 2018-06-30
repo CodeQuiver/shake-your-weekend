@@ -5,15 +5,29 @@
   #bigbox { width: 50%;
       margin-left: 25%;
   
-      background-color: rgb(205, 156, 50);
+     
       text-align: center;
+      color:white;
   }
-  
+  #randomBox{ 
+    width: 150px;
+    font-size: 20px;
+    text-align: center;
+    height: 25px;
+    background-color: darkslategray;
+    color: white;
+    position:center;
+
+  }
   
   #box {
   
-      background-color: rgb(205, 156, 50);
+      background-color:darkslategray;
       text-align: center;
+  }
+  p1{
+      color:white;
+      size: 20px;
   }
   
   #bap{
@@ -29,25 +43,29 @@
   #dest{
       font-size: 50px;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      color: black;
+      color: white;
   }
   #get{
       font-style: italic;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
+      color:white;
+  }
+  #difficulty{
+    color:white;
   }
   
   #bar{
-      background-color:rgb(205, 156, 50);
+      background-color:darkslategray;
   }
   #rad{
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       font-size: 20px;
       text-align: left;
       font-style: italic;
+      color: red;
   }
   #lab{
-      color: black;
+    color:red;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       font-size: 20px;
       font-style: italic;
@@ -61,15 +79,16 @@
       width: 30px;
   } */
   #hike{
-      color: black;
+    color:red;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
       font-size: 20px;
       font-style: italic;
   
   }
-  /* option{
+  option{
+    color:red;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  } */
+  }
   #mapid {
       height: 340px;
       /* width: 40%; */
