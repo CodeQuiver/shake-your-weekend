@@ -32,10 +32,10 @@ What is the problem that the product will address?
 Bored and last minute planning.
 
 What is the primary goal of the product?
-Making cool events faster and easier to find.
+Making cool events faster and easier to find, and help people decide what to do.
 
 Identify and prioritize essential user stories (limit this to 3 or fewer)?
-1- As a user, I want to take a quick quiz and see all the choices to help me decide on the event that I chose to go to.
+1- As a user, I want to take a quick quiz and see all the choices to help me find something to do.
 
 2- As a user, I want to view all the important information about each event in one place so I can decide and be prepared when I get there.
 
@@ -69,3 +69,6 @@ Starter Task List:
     Infrastructure & Project Mgmt:
     - Set up GITHUB & Branching
     - Set up directory structure
+
+
+    Metro Demo API Key: e13626d03d8e4c03ac07f95541b3091b
