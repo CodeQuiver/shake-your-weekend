@@ -1,7 +1,10 @@
 # shake-your-weekend
 App for finding upcoming events.
 
-Title: Shake Your Weekend
+Working Title: Shake Your Weekend
+    Possible Titles: "Spice It Up (tagline: Live Life with some Zest...)", "Shake It Up"/ "Shake things up", "Something Different", "Event-o-matic", "Let's Go Out"
+
+    (Possible silly tagline- Can't decide where to go out? Sick of dinner and a movie? Why not Shake It Up?)
 
 Description:
 
@@ -29,15 +32,15 @@ Who is your target audience?
 Singles in the DC Metro Area looking for exciting activities.
 
 What is the problem that the product will address?
-Bored and last minute planning.
+Boredom and last minute planning.
 
 What is the primary goal of the product?
-Making cool events faster and easier to find.
+Making cool events faster and easier to find, and helping people decide what to do.
 
 Identify and prioritize essential user stories (limit this to 3 or fewer)?
-1- As a user, I want to take a quick quiz and see all the choices to help me decide on the event that I chose to go to.
+1- As a user, I want to take a quick quiz and see all the choices to help me find something to do.
 
-2- As a user, I want to view all the important information about each event in one place so I can decide and be prepared when I get there.
+2- As a user, I want to view all the important information about each event in one place so I can pick one easily, and so I'll be prepared when I get there.
 
 3- As a Metro area resident, I want to know how to get there using metro.
 
@@ -69,3 +72,6 @@ Starter Task List:
     Infrastructure & Project Mgmt:
     - Set up GITHUB & Branching
     - Set up directory structure
+
+
+    Metro Demo API Key: e13626d03d8e4c03ac07f95541b3091b
