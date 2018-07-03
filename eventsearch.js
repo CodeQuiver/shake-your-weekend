@@ -30,21 +30,54 @@ function searchEventBrite(category, subcategory, date, price, keyword) {
         const thisEvent = response.events[i];
 
         //get each value and store in variable
+
+        // event name
         var eventName = thisEvent.name.text;
         console.log("name: " + eventName);
 
+        // description in text only
+        // if we want it in the html tags, comment out the text line and instead use:
+        // var eventDescription = thisEvent.description.html;
+        var eventDescription = thisEvent.description.text;
+        console.log("description: " + eventDescription);
+
+        // url for eventbrite listing
         var eventUrl = thisEvent.url;
-        console.log("short url: " + eventUrl);
+        console.log("url: " + eventUrl);
+
+        // event image- under "logo", may need to expand it
+        var eventImg = "";
+        console.log("picture: " + eventImg);
+
+        // ticket price if applicable ("currency.display")
+        // ticket availability
+
         
+        // time and date
+
+        // location- name and address
+        var eventVenueName = thisEvent.venue.name;
+        console.log("venue name: " + eventVenueName);
+
+        var eventAddress = thisEvent.venue.address.localized_address_display;
+        console.log("address: " + eventAddress);
+
+        // latitude and longitude
+        var eventLatitude = thisEvent.venue.latitude;
+        var eventLongitude = thisEvent.venue.longitude;
+        console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
+
+        // call function to get map and pass it lat and longitude values
+        // call function to print values to results section of page        
     }
 
 
 
 
-        // call function to print these values to results section of page, should be linked on the index.html page
+        
 
     });
 };
 
 // test call of function
-searchEventBrite("104", "", "this_weekend", "free", "");
+searchEventBrite("", "", "this_weekend", "", "festival");
