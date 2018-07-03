@@ -1,10 +1,11 @@
-function searchEventBrite(date, keyword, price, category, subcategory) {
+function searchEventBrite(category, subcategory, date, price, keyword) {
     //VARIABLE DEFINITIONS:
-        // date = keyword of date chosen from these options: “this_week”, “next_week”, “this_weekend”, “next_month”, “this_month”, “tomorrow”, “today”
-        // keyword = from suggestion search
-        // price = "free" or "paid" or leave blank for either
+        
         // category = see eventbrite-ref file for all possible categories, enter only one in this case
         // subcategory = see eventbrite-ref file for all possible subcategories, enter only one in this case
+        // date = keyword of date chosen from these options: “this_week”, “next_week”, “this_weekend”, “next_month”, “this_month”, “tomorrow”, “today”
+        // price = "free" or "paid" or leave blank for either
+        // keyword = from suggestion search
 
         //hard-coded variables: 
             //location.address=Washington%2CDC%2CUSA - restricts search to DC region
@@ -14,7 +15,7 @@ function searchEventBrite(date, keyword, price, category, subcategory) {
             //sort_by=best - sort the results by best match (options are “date”, “distance” and “best”)
 
     // Build the Eventbrite api query using the received parameters from the form as the inputs
-    var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=Washington%2CDC%2CUSA&expand=venue&token=QOM53KU5KI63LIHHP4CR&page=1&sort_by=best&start_date.keyword=" + date + "&q=" + keyword + "&price=" + price + "&categories=" + category + "&subcategories=" + subcategory + "";
+    var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=Washington%2CDC%2CUSA&expand=venue&token=QOM53KU5KI63LIHHP4CR&page=1&sort_by=best&categories=" + category + "&subcategories=" + subcategory + "&start_date.keyword=" + date + "&price=" + price + "&q=" + keyword;
     console.log(queryURL);
 
     //AJAX CALL
@@ -23,14 +24,27 @@ function searchEventBrite(date, keyword, price, category, subcategory) {
           method: "GET"
         }).then(function(response) {
           console.log(response);
+    
+    // FOR loop- for each event result:
+    for (let i = 0; i < response.events.length; i++) {
+        const thisEvent = response.events[i];
 
-    //get each value and store in variable
+        //get each value and store in variable
+        var eventName = thisEvent.name.text;
+        console.log("name: " + eventName);
 
-    // example:
-    // var artistName = response.name;
-    // console.log(artistName);
+        var eventUrl = thisEvent.url;
+        console.log("short url: " + eventUrl);
+        
+    }
 
 
 
-        });
+
+        // call function to print these values to results section of page, should be linked on the index.html page
+
+    });
 };
+
+// test call of function
+searchEventBrite("104", "", "this_weekend", "free", "");
