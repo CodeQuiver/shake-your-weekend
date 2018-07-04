@@ -44,9 +44,9 @@
     </div>
 
     <div id="bigbox">
-      <select id="events">
+      <select id="categories">
         <option disabled selected>Type Of Event</option>
-        <option value="media">Film, Media & Entertainment</option>
+        <option value="104">Film, Media & Entertainment</option>
         <option value="food_drink">Food & Drink</option>
         <option value="">Hip Hop/Rap</option>
         <option value="latin">Latin</option>
@@ -137,16 +137,18 @@
           });
           $("#submit").click(function () {
           // event.preventDefault();
-            var events = $("#events").val()
+            var categories = $("#categories").val()
             var price = $("#price").val()
             var when = $("#when").val()
-            $("#selections").append("<h1>"+ events  + "</h1>");
-            $("#selections").append("<h1>"+ price  + "</h1>");
-            $("#selections").append("<h1>"+ when  + "</h1>");
+            var keyword = $("#randomBox").val()
+            // $("#selections").append("<h1>"+ events  + "</h1>");
+            // $("#selections").append("<h1>"+ price  + "</h1>");
+            // $("#selections").append("<h1>"+ when  + "</h1>");
 
-            console.log(events);
+            console.log(categories);
             console.log(price);
             console.log(when);
+           searchEventBrite(categories, subcategories, when, price, keyword);
             var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=" + userAddress +
             "&token=QOM53KU5KI63LIHHP4CR";
           // var queryURL = "https://www.eventbriteapi.com/v3/?Q=dance/&token=QOM53KU5KI63LIHHP4CR";
