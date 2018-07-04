@@ -15,7 +15,7 @@ function searchEventBrite(category, date, price, keyword) {
             //sort_by=best - sort the results by best match (options are “date”, “distance” and “best”)
 
     // Build the Eventbrite api query using the received parameters from the form as the inputs
-    var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=Washington%2CDC%2CUSA&expand=venue&token=QOM53KU5KI63LIHHP4CR&page=1&sort_by=best&categories=" + category + "&start_date.keyword=" + date + "&price=" + price + "&q=" + keyword;
+    var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=Washington%2CDC%2CUSA&expand=organizer,ticket_availability,venue&token=QOM53KU5KI63LIHHP4CR&page=1&sort_by=best&categories=" + category + "&start_date.keyword=" + date + "&price=" + price + "&q=" + keyword;
     console.log(queryURL);
 
     //AJAX CALL
@@ -46,17 +46,27 @@ function searchEventBrite(category, date, price, keyword) {
         console.log("url: " + eventUrl);
 
         // event image- under "logo", may need to expand it
-        var eventImg = "";
-        console.log("picture: " + eventImg);
+        var eventImg = thisEvent.logo.url;
+        console.log("picture url: " + eventImg);
+
+
+
+        // ticket availability, true or false
+        var ticketsLeft = thisEvent.ticket_availability.has_available_tickets
+
+            if (ticketsLeft === false) { // end this iteration of loop and move on to next result
+                
+            } else { ticketsLeft = "Tickets Available!";
+                
+            }
 
         // ticket price if applicable ("currency.display")
-        var ticketPrice = thisEvent.currency.display;
-        console.log("price: " + ticketPrice);
-
-        // ticket availability
-
+        var ticketPrice = thisEvent.ticket_availability.minimum_ticket_price.display;
+        console.log("tickets start at: " + ticketPrice);
         
         // time and date
+            // get time and date of event
+            // translate to user-friendly format
 
         // location- name and address
         var eventVenueName = thisEvent.venue.name;
