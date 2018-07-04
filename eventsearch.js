@@ -80,4 +80,4 @@ function searchEventBrite(category, date, price, keyword) {
 };
 
 // test call of function
-searchEventBrite("", "", "this_weekend", "", "festival");
+// searchEventBrite("", "", "this_weekend", "", "festival");
