@@ -29,7 +29,7 @@ function searchEventBrite(category, date, price, keyword) {
     for (let i = 0; i < response.events.length; i++) {
         const thisEvent = response.events[i];
 
-        //get each value and store in variable
+        //===========get each value and store in variable================//
 
         // event name
         var eventName = thisEvent.name.text;
@@ -50,6 +50,9 @@ function searchEventBrite(category, date, price, keyword) {
         console.log("picture: " + eventImg);
 
         // ticket price if applicable ("currency.display")
+        var ticketPrice = thisEvent.currency.display;
+        console.log("price: " + ticketPrice);
+
         // ticket availability
 
         
@@ -67,8 +70,28 @@ function searchEventBrite(category, date, price, keyword) {
         var eventLongitude = thisEvent.venue.longitude;
         console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
 
-        // call function to get map and pass it lat and longitude values
-        // call function to print values to results section of page        
+        // call function to get weather and pass it date, lat and longitude values, or otherwise save the lat and long somewhere other functions can access
+        
+        // save return value of weather function as variable (this should be the text weather report for the date of event at its location)
+
+    
+        //============add each item to a new html element and name element as a variable=====================//
+
+
+        //===================== create a div for the event =====//
+
+            // class = event-div
+            // id = event-[i]
+            // data-latitude = eventLatitude
+            // data-longitude = eventLongitude
+        
+        
+        //============= append all elements to event div =========//
+
+
+        //======================== append completed event div to #selections div ==================//
+
+
     }
 
 
@@ -80,4 +103,4 @@ function searchEventBrite(category, date, price, keyword) {
 };
 
 // test call of function
-// searchEventBrite("", "", "this_weekend", "", "festival");
+searchEventBrite("", "this_weekend", "", "festival");
