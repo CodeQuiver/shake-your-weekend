@@ -103,36 +103,19 @@ function searchEventBrite(category, date, price, keyword) {
                     var ticketInfo = ticketsLeft + "!";
                 };
 
-            // h2- event name
-            var printName = $("<h2 class='event-name'>").text(eventName);
-
-            // image - float left
-            var printImg = $("<img>").attr('src',eventImg).attr('style','float:left; max-width:200px; height:auto;');
-
-            // weather
-            var printWeather = $("<h4>").text("Expected Weather: " + eventWeather);
-            
-            // date and time
-            var printDateTime = $("<p>").attr('style','font-weight:bold;').text(dateTime);
-
-            // venue name
-            var printVenueName = $("<p>").attr('style','font-weight:bold;').text(eventVenueName);
-
-            // address
-            var printAddress = $("<p>").text(eventAddress);
+            var printName = $("<h2 class='event-name'>").text(eventName); // h2- event name
+            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover Picture for' + eventName).attr('style','float:left; max-width:200px; height:auto;');// image - float left- TODO- pull real alt text from JSON if it's available
+            var printWeather = $("<h4>").text("Expected Weather: " + eventWeather); // weather
+            var printDateTime = $("<p>").attr('style','font-weight:bold;').text(dateTime); // date and time
+            var printVenueName = $("<p>").attr('style','font-weight:bold;').text(eventVenueName); // venue name
+            var printAddress = $("<p>").text(eventAddress); // address
 
             // ticket info
                 // "full details" if not a ticketed event- url
                 
                 // or "get tickets" url
 
-            // description
-            var printDescription = $("<p>").append(eventDescription);
-
-            
-
-            
-
+            var printDescription = $("<p>").append(eventDescription); // description
 
         //===================== create a div for the event ================================//
 
