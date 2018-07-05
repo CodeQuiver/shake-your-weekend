@@ -1,4 +1,5 @@
 function searchEventBrite(category, date, price, keyword) {
+    
     //VARIABLE DEFINITIONS:
         
         // category = see eventbrite-ref file for all possible categories, enter only one in this case
@@ -12,6 +13,8 @@ function searchEventBrite(category, date, price, keyword) {
             //token=QOM53KU5KI63LIHHP4CR - our access key
             //page=1 - limits results to the number that would fit on the first page of the search if done in the browser, meaning about 50
             //sort_by=best - sort the results by best match (options are “date”, “distance” and “best”)
+
+    $("#selections").empty(); //before starting a new search, empty the div where the search results will go
 
     // Build the Eventbrite api query using the received parameters from the form as the inputs
     var queryURL = "https://www.eventbriteapi.com/v3/events/search/?location.address=Washington%2CDC%2CUSA&expand=organizer,ticket_availability,venue&token=QOM53KU5KI63LIHHP4CR&page=1&sort_by=best&categories=" + category + "&start_date.keyword=" + date + "&price=" + price + "&q=" + keyword;
@@ -108,29 +111,28 @@ function searchEventBrite(category, date, price, keyword) {
                     var ticketInfo = ticketsLeft + "!";
                 };
 
-            var printName = $("<h2 class='card-title'>").text(eventName); // h2- event name
+           
 
-            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover image for' + eventName).attr('style','float:left; max-width:200px; height:auto;')// image - float left- TODO- pull real alt text from JSON if it's available
+            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover image for' + eventName)// image - float left- TODO- pull real alt text from JSON if it's available, removed following style b/c could conflict with card-image class: .attr('style','float:left; max-width:200px; height:auto;')
             var printImgDiv = $("<div>").attr('class','card-image').append(printImg); // divfor it to be a card image in materialize
-
+            
+            var printName = $("<h2 class='card-title'>").text(eventName); // h2- event name
             var printWeather = $("<h4>").text("Expected Weather: " + eventWeather); // weather
             var printDateTime = $("<p>").attr('style','font-weight:bold;').text(dateTime); // date and time
             var printVenueName = $("<p>").attr('style','font-weight:bold;').text(eventVenueName); // venue name
             var printAddress = $("<p>").text(eventAddress); // address
+            var printDescription = $("<p>").append("<span style='font-weight:bold;'>").text("Description: ");
+            printDescription.append(eventDescription); // description
 
             // link to more info or ticket info- needs "if" statement
             var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank');
 
-                // "full details" if not a ticketed event- url
-                
-                // or "get tickets" url if it is a ticketed event
-
-            var printDescription = $("<p>").append("<span style='font-weight:bold;'>").text("Description: ");
-            printDescription.append(eventDescription); // description
+            // "full details" if not a ticketed event- url
+            
+            // or "get tickets" url if it is a ticketed event
 
         //===================== create a div for the event ================================//
-
-            // class = event-div
+            
             // materialize setup:
                 // <div class="card medium horizontal">
                 // <!-- Card Content -->
@@ -147,13 +149,13 @@ function searchEventBrite(category, date, price, keyword) {
                     // </div>
                 // </div>
 
-
+            // class = event-div
             // id = event-[i]
             var eventCardDivId = "event-" + [i];
             // data-lat = eventLatitude
             // data-long = eventLongitude
 
-        var eventCardDiv = $("<div class='event-div card medium horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
+        var eventCardDiv = $("<div class='event-div card horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 
@@ -164,7 +166,14 @@ function searchEventBrite(category, date, price, keyword) {
         
         //============= append all elements to event div ==================================//
 
+                eventCardContentDiv.append(printName, printWeather, printDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
 
+                eventCardActionDiv.append(printLink);//appending info to card-action div
+
+
+        eventCardStackedDiv.append(eventCardContentDiv, eventCardActionDiv);// appending card-content and card-action divs to card-stacked div
+        
+        eventCardDiv.append(printImgDiv).append(eventCardStackedDiv); //appending completed sub-divs to main event div
         //======================== append completed event div to #selections div ==================//
         $("#selections").append(eventCardDiv);
 
