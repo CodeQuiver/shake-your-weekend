@@ -63,9 +63,14 @@ function searchEventBrite(category, date, price, keyword) {
         
         // time and date
             // get time and date of event in local timezone- ex. "2018-07-07T11:00:00"
-            var dateStr = thisEvent.start.local;
+            var startDateStr = thisEvent.start.local;
             // translate to user-friendly format
-            var dateTime = new Date(dateStr);
+            var startDateTime = new Date(startDateStr);
+
+            var endDateStr = thisEvent.end.local;
+            var endDateTime = new Date(endDateStr);
+
+            var dateTime = "Starts: " + startDateTime + "\nEnds: " + endDateTime;
             console.log("Date and Time: " + dateTime);
 
         // location- name and address
@@ -84,7 +89,7 @@ function searchEventBrite(category, date, price, keyword) {
         //================== WEATHER FUNCTION GOES HERE! =========================//
                 //TODO- ADD WEATHER API CALL HERE, (OR COMMAND CALLING IT AS SEPARATE FUNCTION)
 
-                // call function to get weather and pass it date, lat and longitude values, or otherwise save the lat and long somewhere other functions can access
+                // call function to get weather and pass it date (use "startDateTime" variable), lat and longitude values, or otherwise save the lat and long somewhere other functions can access
         //================== WEATHER FUNCTION ENDS HERE! =========================//
         
         // save return value of weather function as variable (this should be the text weather report for the date of event at its location)
@@ -95,7 +100,7 @@ function searchEventBrite(category, date, price, keyword) {
         //============add each item to a new html element and name element as a variable=====================//
 
             // TICKETS: this section only creates the ticket information variable if there are tickets, and only includes price if it's specified.
-            if (ticketsLeft && ticketPrice && ticketPrice != "0.00") {
+            if (ticketsLeft && ticketPrice && ticketPrice!="0.00") {
                     // if tickets are left and the price is specified
                     var ticketInfo = ticketsLeft + ", starting at $" + ticketPrice + ".";
                 } 
@@ -103,33 +108,65 @@ function searchEventBrite(category, date, price, keyword) {
                     var ticketInfo = ticketsLeft + "!";
                 };
 
-            var printName = $("<h2 class='event-name'>").text(eventName); // h2- event name
-            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover Picture for' + eventName).attr('style','float:left; max-width:200px; height:auto;');// image - float left- TODO- pull real alt text from JSON if it's available
+            var printName = $("<h2 class='card-title'>").text(eventName); // h2- event name
+
+            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover image for' + eventName).attr('style','float:left; max-width:200px; height:auto;')// image - float left- TODO- pull real alt text from JSON if it's available
+            var printImgDiv = $("<div>").attr('class','card-image').append(printImg); // divfor it to be a card image in materialize
+
             var printWeather = $("<h4>").text("Expected Weather: " + eventWeather); // weather
             var printDateTime = $("<p>").attr('style','font-weight:bold;').text(dateTime); // date and time
             var printVenueName = $("<p>").attr('style','font-weight:bold;').text(eventVenueName); // venue name
             var printAddress = $("<p>").text(eventAddress); // address
 
-            // ticket info
+            // link to more info or ticket info- needs "if" statement
+            var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank');
+
                 // "full details" if not a ticketed event- url
                 
-                // or "get tickets" url
+                // or "get tickets" url if it is a ticketed event
 
-            var printDescription = $("<p>").append(eventDescription); // description
+            var printDescription = $("<p>").append("<span style='font-weight:bold;'>").text("Description: ");
+            printDescription.append(eventDescription); // description
 
         //===================== create a div for the event ================================//
 
             // class = event-div
+            // materialize setup:
+                // <div class="card medium horizontal">
+                // <!-- Card Content -->
+                    // <div class="card-image">
+                    //     <img>
+                    // </div>
+                    // <div class="card-stacked">
+                    //     <div class="card-content">
+                    //     <p>I am a very simple card. I am good at containing small bits of information.</p>
+                    //     </div>
+                    //     <div class="card-action">
+                    //     <a href="#">This is a link</a>
+                    //     </div>
+                    // </div>
+                // </div>
+
+
             // id = event-[i]
-            // data-latitude = eventLatitude
-            // data-longitude = eventLongitude
+            var eventCardDivId = "event-" + [i];
+            // data-lat = eventLatitude
+            // data-long = eventLongitude
+
+        var eventCardDiv = $("<div class='event-div card medium horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
+
+        var eventCardStackedDiv = $("<div class='card-stacked'>");
+
+        var eventCardContentDiv = $("<div class='card-content'>");
+
+        var eventCardActionDiv = $("<div class='card-action'>");
         
         
         //============= append all elements to event div ==================================//
 
 
         //======================== append completed event div to #selections div ==================//
-
+        $("#selections").append(eventCardDiv);
 
     }
 
