@@ -1,5 +1,6 @@
   
 function printMap(longitude, latitude){
+    // may want to remove the function wrap here, then the code will behave exactly as if it were in the same file.
 
     var mymap = L.map('mapid').setView([38.896959, -77.028238], 15);
     
