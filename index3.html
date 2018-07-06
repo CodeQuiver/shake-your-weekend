@@ -79,7 +79,7 @@
         <a id="randomButton" class="waves-effect waves-light btn">Random Option</a>
         <br>
         <br>
-        <input type="text" id="randomBox">
+        <input type="text" id="randomBox" value="" />
         <a href="#results">
           <br>
             <button class="btn waves-effect waves-light" type="submit" id="submit" name="action">Submit
@@ -121,10 +121,9 @@
 
 
       <script>
-        var random = ["Salsa", "Embassy", "Party", "Brunch", "Improv", "Silent Disco", "Date", "Trivia", "Carnivals",
-          "Festivals"
+        var random = ["Salsa", "Embassy", "Party", "Brunch", "Improv", "Silent Disco", "Date", "Trivia", "Carnival",
+          "Festival"
         ];
-        var userAddress = "";
         var computerGuess = random[Math.floor(Math.random() * random.length)];
 
         $(document).ready(function () {
@@ -138,12 +137,13 @@
             $("#randomBox").val(computerGuess);
 
           });
-          $("#submit").click(function () {
-          // event.preventDefault();
-            var categories = $("#categories").val()
-            var price = $("#price").val()
-            var when = $("#when").val()
-            var keyword = $("#randomBox").val()
+          $("#submit").click(function(){
+          event.preventDefault();
+            var categories = $("#categories").val();
+            var price = $("#price").val();
+            var when = $("#date").val();
+            var keyword = $("#randomBox").val();
+
             // $("#selections").append("<h1>"+ events  + "</h1>");
             // $("#selections").append("<h1>"+ price  + "</h1>");
             // $("#selections").append("<h1>"+ when  + "</h1>");
@@ -151,7 +151,9 @@
             console.log(categories);
             console.log(price);
             console.log(when);
-           searchEventBrite(categories, when, price, keyword);
+            console.log(keyword);
+          
+          searchEventBrite(categories, when, price, keyword);
         
           });
           });
@@ -162,8 +164,8 @@
 
 
 
-      <script src="./main.js"></script>
       <script src="./eventsearch.js"></script>
+      <script src="./otherapi.js"></script>
       <style>
       </style>
 </body>

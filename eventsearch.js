@@ -35,21 +35,21 @@ function searchEventBrite(category, date, price, keyword) {
 
         // event name
         var eventName = thisEvent.name.text;
-        console.log("name: " + eventName);
+        // console.log("name: " + eventName);
 
         // description in text or html depending which line we comment out
         // if we want it in the html tags, comment out the text line and instead use:
         var eventDescription = thisEvent.description.html;
         // var eventDescription = thisEvent.description.text;
-        console.log("description: " + eventDescription);
+        // console.log("description: " + eventDescription);
 
         // url for eventbrite listing
         var eventUrl = thisEvent.url;
-        console.log("url: " + eventUrl);
+        // console.log("url: " + eventUrl);
 
         // event image- under "logo"
         var eventImg = thisEvent.logo.url;
-        console.log("picture url: " + eventImg);
+        // console.log("picture url: " + eventImg);
 
         // ticket availability, true or false- TODO- INSERT "if" PART OF FUNCTION RESULT
         var ticketsLeft = thisEvent.ticket_availability.has_available_tickets;
@@ -62,7 +62,7 @@ function searchEventBrite(category, date, price, keyword) {
 
         // ticket price if applicable
         var ticketPrice = thisEvent.ticket_availability.minimum_ticket_price.display;
-        console.log("tickets start at: " + ticketPrice);
+        // console.log("tickets start at: " + ticketPrice);
         
         // time and date
             // get time and date of event in local timezone- ex. "2018-07-07T11:00:00"
@@ -78,15 +78,15 @@ function searchEventBrite(category, date, price, keyword) {
 
         // location- name and address
         var eventVenueName = thisEvent.venue.name;
-        console.log("venue name: " + eventVenueName);
+        // console.log("venue name: " + eventVenueName);
 
         var eventAddress = thisEvent.venue.address.localized_address_display;
-        console.log("address: " + eventAddress);
+        // console.log("address: " + eventAddress);
 
         // latitude and longitude
         var eventLatitude = thisEvent.venue.latitude;
         var eventLongitude = thisEvent.venue.longitude;
-        console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
+        // console.log("latitude, longitude: " + eventLatitude + ", " + eventLongitude);
 
         
         //================== WEATHER FUNCTION GOES HERE! =========================//
@@ -173,7 +173,7 @@ function searchEventBrite(category, date, price, keyword) {
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 
-        var eventWeatherCardContentDiv = $("<div class='col s6 left-align cyan lighten-5' style='margin:0px;'>").append("<h5 class='left-align'><i class='material-icons'>cloud_done</i>&nbsp;RAINCHECK&nbsp;<i class='material-icons'>cloud_done</i></h5>" + eventWeather);
+        var eventWeatherCardContentDiv = $("<div class='col s6 left-align cyan lighten-5' style='margin:0px;'>").append("<h5 class='left-align'><i class='material-icons'>cloud_done</i>&nbsp;RAINCHECK&nbsp;<i class='material-icons'>cloud_done</i></h5><small>Today's Weather at this location:</small><br />" + eventWeather);
 
         var eventCardContentDiv = $("<div class='card-content left-align' style='overflow:scroll;'>");
 
@@ -204,4 +204,4 @@ function searchEventBrite(category, date, price, keyword) {
 };
 
 // test call of function
-searchEventBrite("", "this_weekend", "", "festival");
+// searchEventBrite("", "this_weekend", "", "festival");
