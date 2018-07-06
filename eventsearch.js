@@ -57,7 +57,7 @@ function searchEventBrite(category, date, price, keyword) {
             if (ticketsLeft === false) {
                 continue; // if there are no tickets left to this event, skip the rest of loop entirely and move on to the next event in list.           
             } else if (ticketsLeft === true) {
-                ticketsLeft = "Tickets are available";
+                ticketsLeft = "Tickets Available Here";
             }
 
         // ticket price if applicable
@@ -73,8 +73,8 @@ function searchEventBrite(category, date, price, keyword) {
             var endDateStr = thisEvent.end.local;
             var endDateTime = new Date(endDateStr);
 
-            var dateTime = "Starts: " + startDateTime + "\nEnds: " + endDateTime;
-            console.log("Date and Time: " + dateTime);
+            // var dateTime = "Starts: " + startDateTime + "Ends: " + endDateTime;
+            // console.log("Date and Time: " + dateTime);
 
         // location- name and address
         var eventVenueName = thisEvent.venue.name;
@@ -96,20 +96,25 @@ function searchEventBrite(category, date, price, keyword) {
         //================== WEATHER FUNCTION ENDS HERE! =========================//
         
         // save return value of weather function as variable (this should be the text weather report for the date of event at its location)
-        var eventWeather = "Placeholder, High of 73 degrees";
+        var eventWeather = "Placeholder, High of 73";
         console.log("Weather Report: " + eventWeather);
 
     
         //============add each item to a new html element and name element as a variable=====================//
 
             // TICKETS: this section only creates the ticket information variable if there are tickets, and only includes price if it's specified.
-            if (ticketsLeft && ticketPrice && ticketPrice!="0.00") {
+            var ticketInfo = "none";
+
+            if (ticketsLeft && ticketPrice && ticketPrice!="0.00 USD") {
                     // if tickets are left and the price is specified
                     var ticketInfo = ticketsLeft + ", starting at $" + ticketPrice + ".";
                 } 
+            else if (ticketsLeft && thisEvent.is_free==true) {
+                    var ticketInfo = "Free Event, Register Here!";
+                }
             else if (ticketsLeft) {
                     var ticketInfo = ticketsLeft + "!";
-                };
+            }
 
            
 
@@ -118,25 +123,32 @@ function searchEventBrite(category, date, price, keyword) {
             
             var printName = $("<h4 class='card-title'>").text(eventName); // h4- event name
 
-            var printWeather = $("<p>").append("<span style='font-weight:bold;'>").text("Expected Weather: " + eventWeather);// weather
+            // var printWeather = $("<div style='font-weight:bold;'>").append(eventWeather);// weather
 
-            var printDateTime = $("<p>").text(dateTime); // date and time
-            var printVenueName = $("<p>").text(eventVenueName); // venue name
+            var printStartDateTime = $("<p>").append("<span style='font-weight:bold;'>Starts:</span> " + startDateTime);
+            var printEndDateTime =  $("<p>").append("<span style='font-weight:bold;'>Ends:</span> " + endDateTime);// date and time
+            var printVenueName = $("<p>").append("<span style='font-weight:bold;'>Location:</span> " + eventVenueName); // venue name
             var printAddress = $("<p>").text(eventAddress); // address
-            var printDescription = $("<p>").append("<span style='font-weight:bold;'>").text("Description: ");
-            printDescription.append(eventDescription); // description
+            var printDescription = $("<p>").append("<span style='font-weight:bold;'>Description:</span>&nbsp;" + eventDescription); // description
 
             // link to more info or ticket info- needs "if" statement
-            var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank').text('placeholder');
+            var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank');
 
-                // "full details" if not a ticketed event- url
+                if (ticketInfo === "none") { // if ticketInfo variable is "none", which is its initial setting)
+                    // it is not a ticketed event
+                    // make the link with the words "Full Event Listing" and the Eventbrite url
+                    printLink.text("Full Event Listing");
+
+                } else {
+                    // it is a ticketed event, so make the link with the ticketInfo variable providing the text, and the Eventbrite url
+                    printLink.text(ticketInfo);
+                };       
                 
-                // or "get tickets" url if it is a ticketed event
 
         //===================== create a div for the event ================================//
             
             // materialize setup:
-                // <div class="card medium horizontal">
+                // <div class="event-div card small horizontal">
                 // <!-- Card Content -->
                     // <div class="card-image">
                     //     <img>
@@ -161,16 +173,18 @@ function searchEventBrite(category, date, price, keyword) {
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 
+        var eventWeatherCardContentDiv = $("<div class='col s6 left-align cyan lighten-5' style='margin:0px;'>").append("<h5 class='left-align'><i class='material-icons'>cloud_done</i>&nbsp;RAINCHECK&nbsp;<i class='material-icons'>cloud_done</i></h5>" + eventWeather);
+
         var eventCardContentDiv = $("<div class='card-content left-align' style='overflow:scroll;'>");
 
-        var eventCardActionDiv = $("<div class='card-action right-align white'>");
+        var eventCardActionDiv = $("<div class='col card-action right-align white'>");
         
         
         //============= append all elements to event div ==================================//
 
-                eventCardContentDiv.append(printWeather, printDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
+                eventCardContentDiv.append(printStartDateTime, printEndDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
 
-                eventCardActionDiv.append(printLink);//appending info to card-action div
+                eventCardActionDiv.append(eventWeatherCardContentDiv).append(printLink);//appending info to card-action div
 
 
         eventCardStackedDiv.append(printName, eventCardContentDiv, eventCardActionDiv);// appending card-content and card-action divs to card-stacked div
