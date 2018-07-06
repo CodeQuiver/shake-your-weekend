@@ -96,7 +96,7 @@ function searchEventBrite(category, date, price, keyword) {
         //================== WEATHER FUNCTION ENDS HERE! =========================//
         
         // save return value of weather function as variable (this should be the text weather report for the date of event at its location)
-        var eventWeather = "Placeholder Partly Cloudy, High of 73 degrees";
+        var eventWeather = "Placeholder, High of 73 degrees";
         console.log("Weather Report: " + eventWeather);
 
     
@@ -113,23 +113,25 @@ function searchEventBrite(category, date, price, keyword) {
 
            
 
-            var printImg = $("<img>").attr('src',eventImg).attr('alt','Cover image for' + eventName)// image - float left- TODO- pull real alt text from JSON if it's available, removed following style b/c could conflict with card-image class: .attr('style','float:left; max-width:200px; height:auto;')
+            var printImg = $("<img class='responsive-img'>").attr('src',eventImg).attr('alt','Cover image for' + eventName)// image - float left- TODO- pull real alt text from JSON if it's available, removed following style b/c could conflict with card-image class: .attr('style','float:left; max-width:200px; height:auto;')
             var printImgDiv = $("<div>").attr('class','card-image').append(printImg); // divfor it to be a card image in materialize
             
-            var printName = $("<h2 class='card-title'>").text(eventName); // h2- event name
-            var printWeather = $("<h4>").text("Expected Weather: " + eventWeather); // weather
-            var printDateTime = $("<p>").attr('style','font-weight:bold;').text(dateTime); // date and time
-            var printVenueName = $("<p>").attr('style','font-weight:bold;').text(eventVenueName); // venue name
+            var printName = $("<h4 class='card-title'>").text(eventName); // h4- event name
+
+            var printWeather = $("<p>").append("<span style='font-weight:bold;'>").text("Expected Weather: " + eventWeather);// weather
+
+            var printDateTime = $("<p>").text(dateTime); // date and time
+            var printVenueName = $("<p>").text(eventVenueName); // venue name
             var printAddress = $("<p>").text(eventAddress); // address
             var printDescription = $("<p>").append("<span style='font-weight:bold;'>").text("Description: ");
             printDescription.append(eventDescription); // description
 
             // link to more info or ticket info- needs "if" statement
-            var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank');
+            var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank').text('placeholder');
 
-            // "full details" if not a ticketed event- url
-            
-            // or "get tickets" url if it is a ticketed event
+                // "full details" if not a ticketed event- url
+                
+                // or "get tickets" url if it is a ticketed event
 
         //===================== create a div for the event ================================//
             
@@ -155,23 +157,23 @@ function searchEventBrite(category, date, price, keyword) {
             // data-lat = eventLatitude
             // data-long = eventLongitude
 
-        var eventCardDiv = $("<div class='event-div card horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
+        var eventCardDiv = $("<div class='event-div card small horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 
-        var eventCardContentDiv = $("<div class='card-content'>");
+        var eventCardContentDiv = $("<div class='card-content left-align' style='overflow:scroll;'>");
 
-        var eventCardActionDiv = $("<div class='card-action'>");
+        var eventCardActionDiv = $("<div class='card-action right-align white'>");
         
         
         //============= append all elements to event div ==================================//
 
-                eventCardContentDiv.append(printName, printWeather, printDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
+                eventCardContentDiv.append(printWeather, printDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
 
                 eventCardActionDiv.append(printLink);//appending info to card-action div
 
 
-        eventCardStackedDiv.append(eventCardContentDiv, eventCardActionDiv);// appending card-content and card-action divs to card-stacked div
+        eventCardStackedDiv.append(printName, eventCardContentDiv, eventCardActionDiv);// appending card-content and card-action divs to card-stacked div
         
         eventCardDiv.append(printImgDiv).append(eventCardStackedDiv); //appending completed sub-divs to main event div
         //======================== append completed event div to #selections div ==================//
