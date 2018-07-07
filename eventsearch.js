@@ -121,7 +121,7 @@ function searchEventBrite(category, date, price, keyword) {
             var printImg = $("<img class='responsive-img'>").attr('src',eventImg).attr('alt','Cover image for' + eventName)// image - float left- TODO- pull real alt text from JSON if it's available, removed following style b/c could conflict with card-image class: .attr('style','float:left; max-width:200px; height:auto;')
             var printImgDiv = $("<div>").attr('class','card-image').append(printImg); // divfor it to be a card image in materialize
             
-            var printName = $("<h4 class='card-title'>").text(eventName); // h4- event name
+            var printName = $("<h5 class='card-title'>").text(eventName); // h5- event name
 
             // var printWeather = $("<div style='font-weight:bold;'>").append(eventWeather);// weather
 
@@ -169,7 +169,7 @@ function searchEventBrite(category, date, price, keyword) {
             // data-lat = eventLatitude
             // data-long = eventLongitude
 
-        var eventCardDiv = $("<div class='event-div card small horizontal'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
+        var eventCardDiv = $("<div class='event-div card small horizontal col s12'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 

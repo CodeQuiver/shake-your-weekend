@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>San</title>
+  <title>Spice It Up</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -21,15 +21,7 @@
 <body>
   <nav id="bar">
     <div class="nav-wrapper">
-      <form>
-        <div class="input-field">
-
-          <label class="label-icon" for="search">
-            <i id="dest">Lively Living</i>
-          </label>
-
-        </div>
-      </form>
+     <h1 style="font-style: italic;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Spice It Up</h1>
     </div>
   </nav>
 
@@ -43,19 +35,20 @@
   <div id="box" class="section ">
     <div class="row " id="bap">
       <h3 id="get">Live life with some zest...</h3>
+      <h5 style="color:white; font-weight:normal; font-style: italic;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Search upcoming events in the DC area.</h5>
     </div>
 
     <div id="bigbox">
       <select id="categories">
         <option disabled selected>Type Of Event</option>
-        <option value="104">Film, Media & Entertainment</option>
-        <option value="110">Food & Drink</option>
+        <option value="104">Film, Media &amp; Entertainment</option>
+        <option value="110">Food &amp; Drink</option>
         <option value="103">Music</option>
-        <option value="101">Business & Professional</option>
-        <option value="113">Community & Culture</option>
-        <option value="104">Media & Entertainment</option>
-        <option value="108">Sports & Fitness</option>
-        <option value="107">Health & Wellness</option>
+        <option value="101">Business &amp; Professional</option>
+        <option value="113">Community &amp; Culture</option>
+        <option value="104">Media &amp; Entertainment</option>
+        <option value="108">Sports &amp; Fitness</option>
+        <option value="107">Health &amp; Wellness</option>
       </select>
       <select id="date">
         <option disabled selected>When</option>
@@ -105,7 +98,7 @@
 
       <div class="row">
         <div class="col">
-          <a name="results"></a>
+          <a id="results"></a>
           <div id="selections">
 
           </div>
@@ -113,12 +106,11 @@
         
       </div>
 
+      <!--div to hold the map-->
+      <div id="map"></div>
 
       <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
         crossorigin=""></script>
-      <script>
-      </script>
-
 
       <script>
         var random = ["Salsa", "Embassy", "Party", "Brunch", "Improv", "Silent Disco", "Date", "Trivia", "Carnival",
@@ -139,14 +131,16 @@
           });
           $("#submit").click(function(){
           event.preventDefault();
-            var categories = $("#categories").val();
-            var price = $("#price").val();
-            var when = $("#date").val();
-            var keyword = $("#randomBox").val();
-
-            // $("#selections").append("<h1>"+ events  + "</h1>");
-            // $("#selections").append("<h1>"+ price  + "</h1>");
-            // $("#selections").append("<h1>"+ when  + "</h1>");
+            // initialize variables with empty strings
+            var categories = "";
+            var price = "";
+            var when = "";
+            var keyword = "";
+            
+            categories = $("#categories").val();
+            price = $("#price").val();
+            when = $("#date").val();
+            keyword = $("#randomBox").val();
 
             console.log(categories);
             console.log(price);
@@ -166,8 +160,7 @@
 
       <script src="./eventsearch.js"></script>
       <script src="./otherapi.js"></script>
-      <style>
-      </style>
+
 </body>
 
 </html>
