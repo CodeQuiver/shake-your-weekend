@@ -39,8 +39,8 @@ function searchEventBrite(category, date, price, keyword) {
 
         // description in text or html depending which line we comment out
         // if we want it in the html tags, comment out the text line and instead use:
-        var eventDescription = thisEvent.description.html;
-        // var eventDescription = thisEvent.description.text;
+        // var eventDescription = thisEvent.description.html;
+        var eventDescription = thisEvent.description.text;
         // console.log("description: " + eventDescription);
 
         // url for eventbrite listing
@@ -91,13 +91,14 @@ function searchEventBrite(category, date, price, keyword) {
         
         //================== WEATHER FUNCTION GOES HERE! =========================//
                 //TODO- ADD WEATHER API CALL HERE, (OR COMMAND CALLING IT AS SEPARATE FUNCTION)
+                var eventWeather = searchArea(eventLatitude, eventLongitude);
 
                 // call function to get weather and pass it date (use "startDateTime" variable), lat and longitude values, or otherwise save the lat and long somewhere other functions can access
         //================== WEATHER FUNCTION ENDS HERE! =========================//
         
         // save return value of weather function as variable (this should be the text weather report for the date of event at its location)
-        var eventWeather = "Placeholder, High of 73";
-        console.log("Weather Report: " + eventWeather);
+        // var eventWeather = "Placeholder, High of 73";
+        // console.log("Weather Report: " + eventWeather);
 
     
         //============add each item to a new html element and name element as a variable=====================//
@@ -129,7 +130,7 @@ function searchEventBrite(category, date, price, keyword) {
             var printEndDateTime =  $("<p>").append("<span style='font-weight:bold;'>Ends:</span> " + endDateTime);// date and time
             var printVenueName = $("<p>").append("<span style='font-weight:bold;'>Location:</span> " + eventVenueName); // venue name
             var printAddress = $("<p>").text(eventAddress); // address
-            var printDescription = $("<p>").append("<span style='font-weight:bold;'>Description:</span>&nbsp;" + eventDescription); // description
+            var printDescription = $("<p>").append("<span style='font-weight:bold;'>Description:</span>&nbsp;" + eventDescription + "<br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp; <br /> &nbsp;"); // description- the extra line breaks are to pad the bottom so all the text can be read even though the bottom action div overlaps the div the description is in. There is probably a better fix to force the boxes not to overlap, but this solves the short-term practical problem.
 
             // link to more info or ticket info- needs "if" statement
             var printLink = $("<a>").attr('href', eventUrl).attr('target','_blank');
@@ -169,22 +170,25 @@ function searchEventBrite(category, date, price, keyword) {
             // data-lat = eventLatitude
             // data-long = eventLongitude
 
-        var eventCardDiv = $("<div class='event-div card small horizontal col s12'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
+        var eventCardDiv = $("<div class='event-div card medium horizontal col s12'>").attr('id',eventCardDivId).attr('data-lat',eventLatitude).attr('data-long',eventLongitude);
 
         var eventCardStackedDiv = $("<div class='card-stacked'>");
 
-        var eventWeatherCardContentDiv = $("<div class='col s6 left-align cyan lighten-5' style='margin:0px;'>").append("<h5 class='left-align'><i class='material-icons'>cloud_done</i>&nbsp;RAINCHECK&nbsp;<i class='material-icons'>cloud_done</i></h5><small>Today's Weather at this location:</small><br />" + eventWeather);
+        var eventWeatherCardContentDiv = $("<div class='col s6 left-align cyan lighten-5' style='margin:0px;'>").append("<h5 class='left-align'><i class='material-icons'>cloud_done</i>&nbsp;RAINCHECK&nbsp;<i class='material-icons'>cloud_done</i></h5><small>Today's Weather at this location:</small>");
+        eventWeatherCardContentDiv.append(eventWeather);
+
+        var eventLinkDiv = $("<div class='col s6 right-align white' style='margin:0px;'>").append(printLink);
 
         var eventCardContentDiv = $("<div class='card-content left-align' style='overflow:scroll;'>");
-
-        var eventCardActionDiv = $("<div class='col card-action right-align white'>");
+        
+        var eventCardActionDiv = $("<div class='card-action white'>");
         
         
         //============= append all elements to event div ==================================//
 
                 eventCardContentDiv.append(printStartDateTime, printEndDateTime, printVenueName, printAddress, printDescription); //appending main info to card-content div
 
-                eventCardActionDiv.append(eventWeatherCardContentDiv).append(printLink);//appending info to card-action div
+                eventCardActionDiv.append(eventWeatherCardContentDiv).append(eventLinkDiv);//appending info to card-action div
 
 
         eventCardStackedDiv.append(printName, eventCardContentDiv, eventCardActionDiv);// appending card-content and card-action divs to card-stacked div
